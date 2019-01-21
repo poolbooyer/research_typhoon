@@ -1,1 +1,3 @@
-# -research_-typhoon
+# research_typhoon
+## このソフトウェアについて
+pigのやつ
