@@ -12,4 +12,4 @@ hpower_data = FOREACH typhon_data_all GENERATE group , MIN(order_data.power), CO
 -- outputデータを削除
 rmf data/output;
 -- 取得したデータをoutput
-;STORE hpower_data INTO 'data/output';
+;STORE hpower_data INTO 'data/output' USING PigStorage(',');
