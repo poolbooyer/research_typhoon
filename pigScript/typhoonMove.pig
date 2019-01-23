@@ -7,7 +7,7 @@ order_data = ORDER typhon_input BY year,month,day,time ;
 typhon_data_all = Group order_data BY num;
 
 -- 一番気圧が低下した時のデータ、各台風のデータ数を記録
-hpower_data = FOREACH typhon_data_all GENERATE group , MIN(order_data.power), COUNT(order_data);
+hpower_data = FOREACH typhon_data_all {sorted = ORDER order_data BY power; mdata = LIMIT sorted 1; GENERATE group , FLATTEN(mdata.power) AS power ,FLATTEN(mdata.row) AS row , FLATTEN(mdata.col) AS col , COUNT(order_data);};
 
 -- outputデータを削除
 rmf data/output;
