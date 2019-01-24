@@ -77,11 +77,61 @@ data.each do|line|
     data[i][4]=line[4].to_i
     i=i+1
 end
+year08=[]
+year09=[]
+year10=[]
+year11=[]
+year12=[]
+year13=[]
+year14=[]
+year15=[]
+year16=[]
+year17=[]
+year18=[]
+data.each do |line|
+    if line[0]<800 then
+    elsif  line[0]< 900 then
+        year08.push(line)
+    elsif line[0]<1000 then
+        year09.push(line)
+    elsif line[0]<1100 then
+        year10.push(line)
+    elsif line[0]<1200 then
+        year11.push(line)
+    elsif line[0]<1300 then
+        year12.push(line)
+    elsif line[0]<1400 then
+        year13.push(line)
+    elsif line[0]<1500 then
+        year14.push(line)
+    elsif line[0]<1600 then
+        year15.push(line)
+    elsif line[0]<1700 then
+        year16.push(line)
+    elsif line[0]<1800 then
+        year17.push(line)
+    else
+        year18.push(line)
+    end
+end
+p year08
 #配列を50単位で分割
-data=data.each_slice(50).to_a
+data=[]
+data.push(year08)
+data.push(year09)
+data.push(year10)
+data.push(year11)
+data.push(year12)
+data.push(year13)
+data.push(year14)
+data.push(year15)
+data.push(year16)
+data.push(year17)
+data.push(year18)
 i=0
 #各データについて出力を実施
 data.each do |block|
+    Documents=""
     Documents = REXML::Element.new('Document')
     create_kml(block,i,Documents)
     i=i+1
