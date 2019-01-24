@@ -22,7 +22,7 @@ def create_kml(data,num,documents)
 
         #説明を追加
         description = REXML::Element.new('description')
-        description.add_text(line[1].to_s+","+line[4].to_s+","+line[2].to_s+","+line[3].to_s)
+        description.add_text(line[5].to_s+","+line[6].to_s+","+line[7].to_s+","+line[8].to_s+","+line[1].to_s)
         
         #親ノードに名称を追加
         placemark.add_element(description)
@@ -40,7 +40,7 @@ def create_kml(data,num,documents)
     #元ノードに追加
     kml.add_element(documents)
     #ファイルに出力
-    fname=num.to_s+"data.kml"
+    fname=data[0][5].to_s+".kml"
     File.open(fname, 'w') do |file|
         doc.write(file, indent=2)
     end
@@ -75,6 +75,10 @@ data.each do|line|
     data[i][2]=line[2].to_f
     data[i][3]=line[3].to_f
     data[i][4]=line[4].to_i
+    data[i][5]=line[5].to_i
+    data[i][6]=line[6].to_i
+    data[i][7]=line[7].to_i
+    data[i][8]=line[8].to_i
     i=i+1
 end
 year08=[]
