@@ -26,7 +26,10 @@ def create_kml(data,num,documents)
         
         #親ノードに名称を追加
         placemark.add_element(description)
-
+        styleurl= REXML::Element.new('styleUrl')
+        stylepath="../style.kml#"+line[5].to_s
+        styleurl.add_text(stylepath)
+        placemark.add_element(styleurl)
         #位置情報を格納
         point = REXML::Element.new('Point')
         coordinates = REXML::Element.new('coordinates')
