@@ -40,7 +40,7 @@ def create_kml(data,num,documents)
     #元ノードに追加
     kml.add_element(documents)
     #ファイルに出力
-    fname=data[0][5].to_s+".kml"
+    fname="kml/"+data[0][5].to_s+".kml"
     File.open(fname, 'w') do |file|
         doc.write(file, indent=2)
     end
