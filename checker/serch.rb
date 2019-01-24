@@ -1,6 +1,7 @@
 require 'rexml/document'
-
+#kml出力を行う
 def create_kml(data,num,documents)
+    #元のノード(コメント)を生成
     doc = REXML::Document.new
     doc << REXML::XMLDecl.new('1.0', 'UTF-8')
 
@@ -11,22 +12,34 @@ def create_kml(data,num,documents)
     
     # ルートノードの下に子ノードを追加
     data.each do |line|
-        
+        #台風番号を名称に格納
         name = REXML::Element.new('name')
         name.add_text(line[0].to_s)
+
+        #親ノードに名称を追加
         placemark = REXML::Element.new('Placemark')
         placemark.add_element(name)
+
+        #説明を追加
         description = REXML::Element.new('description')
         description.add_text(line[1].to_s+","+line[4].to_s+","+line[2].to_s+","+line[3].to_s)
+        
+        #親ノードに名称を追加
         placemark.add_element(description)
+
+        #位置情報を格納
         point = REXML::Element.new('Point')
         coordinates = REXML::Element.new('coordinates')
         coordinates.add_text(line[3].to_s+","+line[2].to_s+",0.")
+        
+        #親ノードに位置情報を追加
         point.add_element(coordinates)
         placemark.add_element(point)
         documents.add_element(placemark)
     end
+    #元ノードに追加
     kml.add_element(documents)
+    #ファイルに出力
     fname=num.to_s+"data.kml"
     File.open(fname, 'w') do |file|
         doc.write(file, indent=2)
@@ -46,6 +59,7 @@ line_data=[]
 read_data.each do |line|
     line_data.push(line.split("\t"))
 end
+#読み込んだ情報を,単位で分割
 data=[]
 line_data.each do |line|
     line.each do |cel|
@@ -63,13 +77,10 @@ data.each do|line|
     data[i][4]=line[4].to_i
     i=i+1
 end
+#配列を50単位で分割
 data=data.each_slice(50).to_a
 i=0
-#hoge[0]=data[0][1]
-#p hoge
-#create_kml()
-#Documents = REXML::Element.new('Document')
-#create_kml(hoge,i,Documents)
+#各データについて出力を実施
 data.each do |block|
     Documents = REXML::Element.new('Document')
     create_kml(block,i,Documents)
