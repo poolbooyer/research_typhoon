@@ -95,61 +95,44 @@ def exchange(data)
     end
     return data
 end
+def split_by_year(data)
+    #年ごとに配列に一時保存
+    stack=[]
+    for num in 0..10 do
+        stack[num]=[]
+    end
+    #年ごとに振り分け
+    data.each do |line|
+        if line[5]==2008 then
+            stack[0].push(line)
+        elsif line[5]==2009 then
+            stack[1].push(line)
+        elsif line[5]==2010 then
+            stack[2].push(line)
+        elsif line[5]==2011 then
+            stack[3].push(line)
+        elsif line[5]==2012 then
+            stack[4].push(line)
+        elsif line[5]==2013 then
+            stack[5].push(line)
+        elsif line[5]==2014 then
+            stack[6].push(line)
+        elsif line[5]==2015 then
+            stack[7].push(line)
+        elsif line[5]==2016 then
+            stack[8].push(line)
+        elsif line[5]==2017 then
+            stack[9].push(line)
+        elsif line[5]==2018 then
+            stack[10].push(line)
+        end
+    end
+    return stack
+end
 data=read_data()
 data=divideData(data)
 data=exchange(data)
-#年ごとに配列に一時保存
-year08=[]
-year09=[]
-year10=[]
-year11=[]
-year12=[]
-year13=[]
-year14=[]
-year15=[]
-year16=[]
-year17=[]
-year18=[]
-#年ごとに振り分け
-data.each do |line|
-    if line[0]<800 then
-    elsif  line[0]< 900 then
-        year08.push(line)
-    elsif line[0]<1000 then
-        year09.push(line)
-    elsif line[0]<1100 then
-        year10.push(line)
-    elsif line[0]<1200 then
-        year11.push(line)
-    elsif line[0]<1300 then
-        year12.push(line)
-    elsif line[0]<1400 then
-        year13.push(line)
-    elsif line[0]<1500 then
-        year14.push(line)
-    elsif line[0]<1600 then
-        year15.push(line)
-    elsif line[0]<1700 then
-        year16.push(line)
-    elsif line[0]<1800 then
-        year17.push(line)
-    else
-        year18.push(line)
-    end
-end
-#1つの配列にデータを結合
-data=[]
-data.push(year08)
-data.push(year09)
-data.push(year10)
-data.push(year11)
-data.push(year12)
-data.push(year13)
-data.push(year14)
-data.push(year15)
-data.push(year16)
-data.push(year17)
-data.push(year18)
+data=split_by_year(data)
 #各データについて出力を実施
 data.each do |block|
     Documents=""
