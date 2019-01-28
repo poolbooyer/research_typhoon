@@ -28,4 +28,5 @@ lib/xmlenc-0.52.jar
 src/embedded/PigEmbedded_10_kmeans.java
 src/myUDF/MyDateExtractor.java
 src/myUDF/MyEUCJP2String.java
-kml/20*.kml
+kml/high/*
+kml/land/*
