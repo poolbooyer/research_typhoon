@@ -22,14 +22,18 @@ def create_kml(data,documents)
 
         #説明を追加
         description = REXML::Element.new('description')
-        description.add_text(line[5].to_s+","+line[6].to_s+","+line[7].to_s+","+line[8].to_s+","+line[1].to_s)
+        title="<h1>"+line[5].to_s+"年"+line[0].to_s[-2..-1]+"号</h1>"
+        date="<dl><dt>date</dt><dd>"+line[5].to_s+"/"+line[6].to_s+"/"+line[7].to_s+" "+line[8].to_s+"時</dd></dl>"
+        info="<dl><dt>気圧</dt><dd>"+line[1].to_s+"</dd><dt>データ数</dt><dd>"+line[4].to_s+"</dd></dl>"
+        text=title+date+info
+        description.add_text(text)
         
         #親ノードに名称を追加
         placemark.add_element(description)
 
         #スタイル読み込み用タグを追加
         styleurl= REXML::Element.new('styleUrl')
-        stylepath="../style.kml#"+line[5].to_s
+        stylepath="style.kml#"+line[5].to_s
         styleurl.add_text(stylepath)
         placemark.add_element(styleurl)
         #位置情報を格納
