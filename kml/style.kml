@@ -8,6 +8,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2009">
 <scale>10</scale>
@@ -16,6 +21,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/blue-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2010">
 <scale>10</scale>
@@ -24,6 +34,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/grn-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2011">
 <scale>10</scale>
@@ -32,6 +47,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/ltblu-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2012">
 <scale>10</scale>
@@ -40,6 +60,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/pink-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2013">
 <scale>10</scale>
@@ -48,6 +73,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/purple-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2014">
 <scale>10</scale>
@@ -56,6 +86,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2015">
 <scale>10</scale>
@@ -64,6 +99,11 @@
 <href>http://maps.google.com/mapfiles/kml/pushpin/wht-pushpin.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2016">
 <scale>10</scale>
@@ -72,6 +112,11 @@
 <href>http://maps.google.com/mapfiles/kml/shapes/star.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2017">
 <scale>10</scale>
@@ -80,6 +125,11 @@
 <href>http://maps.google.com/mapfiles/kml/shapes/target.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 <Style id="2018">
 <scale>10</scale>
@@ -88,6 +138,11 @@
 <href>http://maps.google.com/mapfiles/kml/shapes/triangle.png</href>
 </Icon>
 </IconStyle>
+<BalloonStyle>
+<text><![CDATA[
+$[description]
+]]></text>
+</BalloonStyle>
 </Style>
 </Document>
 </kml>
