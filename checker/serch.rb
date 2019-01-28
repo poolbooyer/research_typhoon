@@ -50,7 +50,7 @@ def create_kml(data,documents)
     kml.add_element(documents)
     #ファイルに出力
     #各年のファイル名を作成
-    fname="kml/"+data[0][5].to_s+".kml"
+    fname="kml/high/"+data[0][5].to_s+".kml"
     File.open(fname, 'w') do |file|
         doc.write(file, indent=2)
     end
@@ -59,7 +59,7 @@ end
 def read_data()
     #データを読み込み
     read_data = []
-    File.open("data/output/part-r-00000", mode = "rt"){|f|
+    File.open("data/output/high/part-r-00000", mode = "rt"){|f|
         read_data = f.read
     }
     #読み込んだデータを改行コードで配列に格納
