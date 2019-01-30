@@ -12,8 +12,8 @@ def create_kml(data,documents)
     y=[]
     # ルートノードの下に子ノードを追加
     data.each do |line|
-        y.push(line[4].to_s)
-        title=line[4].to_s+"年"+line[5].to_s+"/"+line[6].to_s+" "+line[7].to_s+"時"
+        y.push(line[4])
+        title=line[4]+"年"+line[5]+"/"+line[6]+" "+line[7]+"時"
         #台風番号を名称に格納
         name = REXML::Element.new('name')
         name.add_text(title)
@@ -24,8 +24,8 @@ def create_kml(data,documents)
 
         #説明を追加
         description = REXML::Element.new('description')
-        title="<h1>"+line[4].to_s+"年"+line[5].to_s+"/"+line[6].to_s+" "+line[7].to_s+"時</h1>"
-        info="<dl><dt>気圧</dt><dd>"+line[1].to_s+"</dd></dl>"
+        title="<h1>"+line[4]+"年"+line[5]+"/"+line[6]+" "+line[7]+"時</h1>"
+        info="<dl><dt>気圧</dt><dd>"+line[1]+"</dd></dl>"
         text=title+info
         description.add_text(text)
         
@@ -34,13 +34,13 @@ def create_kml(data,documents)
 
         #スタイル読み込み用タグを追加
         styleurl= REXML::Element.new('styleUrl')
-        stylepath="style.kml#"+line[4].to_s
+        stylepath="style.kml#"+line[4]
         styleurl.add_text(stylepath)
         placemark.add_element(styleurl)
         #位置情報を格納
         point = REXML::Element.new('Point')
         coordinates = REXML::Element.new('coordinates')
-        coordinates.add_text(line[3].to_s+","+line[2].to_s+",0.")
+        coordinates.add_text(line[3]+","+line[2]+",0.")
         
         #親ノードに位置情報を追加
         point.add_element(coordinates)
@@ -87,22 +87,6 @@ def divideData(read_data)
     end
     return split_data
 end
-#各要素の型変換を実施
-def exchange(data)
-    i=0
-    data.each do|line|
-        data[i][0]=line[0].to_i
-        data[i][1]=line[1].to_f
-        data[i][2]=line[2].to_f
-        data[i][3]=line[3].to_f
-        data[i][4]=line[4].to_i
-        data[i][5]=line[5].to_i
-        data[i][6]=line[6].to_i
-        data[i][7]=line[7].to_i
-        i=i+1
-    end
-    return data
-end
 def split_by_year(data)
     #年ごとに配列に一時保存
     stack=[]
@@ -111,27 +95,27 @@ def split_by_year(data)
     end
     #年ごとに振り分け
     data.each do |line|
-        if line[4]==2008 then
+        if line[4]=="2008"then
             stack[0].push(line)
-        elsif line[4]==2009 then
+        elsif line[4]=="2009" then
             stack[1].push(line)
-        elsif line[4]==2010 then
+        elsif line[4]=="2010" then
             stack[2].push(line)
-        elsif line[4]==2011 then
+        elsif line[4]=="2011" then
             stack[3].push(line)
-        elsif line[4]==2012 then
+        elsif line[4]=="2012" then
             stack[4].push(line)
-        elsif line[4]==2013 then
+        elsif line[4]=="2013" then
             stack[5].push(line)
-        elsif line[4]==2014 then
+        elsif line[4]=="2014" then
             stack[6].push(line)
-        elsif line[4]==2015 then
+        elsif line[4]=="2015" then
             stack[7].push(line)
-        elsif line[4]==2016 then
+        elsif line[4]=="2016" then
             stack[8].push(line)
-        elsif line[4]==2017 then
+        elsif line[4]=="2017" then
             stack[9].push(line)
-        elsif line[4]==2018 then
+        elsif line[4]=="2018" then
             stack[10].push(line)
         end
     end
@@ -139,7 +123,6 @@ def split_by_year(data)
 end
 data=read_data()
 data=divideData(data)
-data=exchange(data)
 data=split_by_year(data)
 #各データについて出力を実施
 data.each do |block|
