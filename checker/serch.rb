@@ -1,6 +1,6 @@
 require 'rexml/document'
 #kml出力を行う
-def create_kml(data,documents)
+def create_kml(data)
     #元のノード(コメント)を生成
     doc = REXML::Document.new
     doc << REXML::XMLDecl.new('1.0', 'UTF-8')
@@ -10,6 +10,8 @@ def create_kml(data,documents)
     kml.add_attribute('xmlns','http://www.opengis.net/kml/2.2')
     doc.add_element(kml)
     
+    #ドキュメントノードを作成
+    root = REXML::Element.new('Document')
     # ルートノードの下に子ノードを追加
     data.each do |line|
         #台風番号を名称に格納
@@ -44,10 +46,10 @@ def create_kml(data,documents)
         #親ノードに位置情報を追加
         point.add_element(coordinates)
         placemark.add_element(point)
-        documents.add_element(placemark)
+        root.add_element(placemark)
     end
     #元ノードに追加
-    kml.add_element(documents)
+    kml.add_element(root)
     #ファイルに出力
     #各年のファイル名を作成
     fname="kml/high/"+data[0][5]+".kml"
@@ -64,18 +66,18 @@ def read_data()
     }
     #読み込んだデータを改行コードで配列に格納
     read_data=read_data.split("\n")
-    return read_data
-end
-#データの分割
-def divideData(read_data)
     line_data=[]
     #配列をtab空白単位で分割
     read_data.each do |line|
         line_data.push(line.split("\t"))
     end
+    return line_data
+end
+#データの分割
+def divideData(full_data)
     #読み込んだ情報を,単位で分割
     split_data=[]
-    line_data.each do |line|
+    full_data.each do |line|
         line.each do |cel|
             split_data.push(cel.split(","))
         end
@@ -116,12 +118,13 @@ def split_by_year(data)
     end
     return stack
 end
+def outputData(data)
+    #各データについて出力を実施
+    data.each do |block|
+        create_kml(block)
+    end
+end
 data=read_data()
 data=divideData(data)
 data=split_by_year(data)
-#各データについて出力を実施
-data.each do |block|
-    Documents=""
-    Documents = REXML::Element.new('Document')
-    create_kml(block,Documents)
-end
+outputData(data)
