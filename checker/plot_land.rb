@@ -57,7 +57,7 @@ def create_kml(data)
     #各年のファイル名を作成
     for num in 0..10 do
         if data[num]!=nil then
-            fname="kml/land/"+data[num][4]+".kml"
+            fname="kml/land/L"+data[num][4]+".kml"
             File.open(fname, 'w') do |file|
                 doc.write(file, indent=2)
             end
