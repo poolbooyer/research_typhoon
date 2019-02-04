@@ -35,7 +35,7 @@ def create_kml(data)
 
         #スタイル読み込み用タグを追加
         styleurl= REXML::Element.new('styleUrl')
-        stylepath="style.kml#"+line[5]
+        stylepath="st_new.kml#hpower"
         styleurl.add_text(stylepath)
         placemark.add_element(styleurl)
         #位置情報を格納
@@ -52,7 +52,7 @@ def create_kml(data)
     kml.add_element(root)
     #ファイルに出力
     #各年のファイル名を作成
-    fname="kml/high/"+data[0][5]+".kml"
+    fname="kml/high/H"+data[0][5]+".kml"
     File.open(fname, 'w') do |file|
         doc.write(file, indent=2)
     end
