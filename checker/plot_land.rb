@@ -14,8 +14,7 @@ def create_kml(data)
     root=REXML::Element.new('Document')
     # ルートノードの下に子ノードを追加
     data.each do |line|
-        #y.push(line[4])
-        title=line[4]+"年"+line[5]+"/"+line[6]+" "+line[7]+"時"
+        title="台風番号:"+line[0]+"  "+line[5]+"/"+line[6]+" "+line[7]+"時"
         #台風番号を名称に格納
         name = REXML::Element.new('name')
         name.add_text(title)
@@ -27,7 +26,7 @@ def create_kml(data)
         #説明を追加
         description = REXML::Element.new('description')
         title="<h1>"+line[4]+"年"+line[5]+"/"+line[6]+" "+line[7]+"時</h1>"
-        info="<dl><dt>気圧</dt><dd>"+line[1]+"</dd></dl>"
+        info="<dl><dt>台風番号</dt><dd>"+line[0]+"</dd><dt>気圧</dt><dd>"+line[1]+"</dd></dl>"
         text=title+info
         description.add_text(text)
         
@@ -36,7 +35,7 @@ def create_kml(data)
 
         #スタイル読み込み用タグを追加
         styleurl= REXML::Element.new('styleUrl')
-        stylepath="style.kml#"+line[4]
+        stylepath="st_new.kml#land"
         styleurl.add_text(stylepath)
         placemark.add_element(styleurl)
         #位置情報を格納
@@ -57,7 +56,7 @@ def create_kml(data)
     #各年のファイル名を作成
     for num in 0..10 do
         if data[num]!=nil then
-            fname="kml/land/"+data[num][4]+".kml"
+            fname="kml/land/L"+data[num][4]+".kml"
             File.open(fname, 'w') do |file|
                 doc.write(file, indent=2)
             end
